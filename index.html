@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weppage</title>
+    <style type="text/css">
+      #really-tall {
+        padding-bottom: 10%;
+        text-align: center;
+        padding-top: 5%;
+      }
+
+      h1 {
+        text-align: center;
+      }
+    </style>
+    <script type="text/javascript">
+      var reveal_last = 0;
+      function reveal(){
+        if (reveal_last == 0) {
+          document.getElementById("hell").style.color = "#ff0000";
+          document.getElementById("hidden").innerHTML = "Nice, you found the secret. find the <span id=\"next\" onmouseover=\"revealtwo()\">next</span>, <span id=\"dare\">I dare you.</span>";
+          document.getElementById("really-tall").innerHTML = "There are nothing to be found here but secrets."
+          reveal_last = 1;
+        }
+        else if (reveal_last == 2) {
+          document.getElementById("hell").style.color = "#00ff00";
+          document.getElementById("really-tall").innerHTML = "Wow, I didn't even remember that secret. That was very clever of you. Congrats!";
+          document.getElementById("hidden_input").type = "text";
+          document.getElementById("hidden").innerHTML = "↓"
+          reveal_last = 3;
+        }
+        else if (reveal_last == 5) {
+          document.getElementById("hell").style.color = "#0000ff";
+          document.getElementById("finalhint").innerHTML = "There is a final <span onmouseover=\"revealfinal()\" id=\"final\">secret</span> somewhere on this page. <span id=\"findit\">Find <span onmouseover=\"reveal_real_final()\" id=\"realfinal\">it</span>.</span>";
+          reveal_last = 6;
+        }
+      }
+      function revealtwo(){
+        if (reveal_last == 1) {
+          document.getElementById("next").style.color = "#ff0000";
+          document.getElementById("dare").innerHTML = "damnit you did. Nice one, smartass, you found the next.";
+          document.getElementById("really-tall").innerHTML = "There is nothing to be found here but hell.";
+          reveal_last = 2;
+        }
+      }
+      function revealthree(){
+        if (reveal_last == 4) {
+          document.getElementById("notcheating").innerHTML = "Okay, that's good. Thanks for playing fair.";
+          document.getElementById("thirdreveal").style.color = "#ff0000"
+          reveal_last = 5;
+        }
+      }
+      function check_input() {
+        if (reveal_last == 3) {
+          if (document.getElementById("hidden_input").value == "thanks") {
+            document.getElementById("really-tall").innerHTML = "...You're welcome. There's <span id=\"thirdreveal\" onmouseover=\"revealthree()\">no</span> way that was a guess. Are you cheating?</p><p><span id=\"notcheating\"></span>";
+            reveal_last = 4;
+          }
+        }
+        if (reveal_last == 4) {
+          if (document.getElementById("hidden_input").value == "yes") {
+            document.write("you have been banned for the following reason: [\"haha cheater get pwned\"]");
+          }
+        }
+      }
+      function revealfinal() {
+        if (reveal_last = 6) {
+          document.getElementById("final").style.color = "#ff0000";
+          document.getElementById("findit").innerHTML = "Nice try! That wasn't <span id=\"realfinal\" onmouseover=\"reveal_real_final()\">it</span>!";
+        }
+      }
+      function reveal_real_final() {
+        if (reveal_last = 6) {
+          document.getElementById("realfinal").style.color = "#ff0000";
+          document.getElementById("really-tall").innerHTML = "You win!!!</p><p>Congratulations! You have found all secrets! Now go do something productive.</p>";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Welcome to <span id="hell" onmouseover="reveal()">hell</span></h1>
+    <hr>
+    <p id="really-tall">There is nothing to be found here but boredom.</p>
+    <hr>
+    <p id="hidden"></p>
+    <input type="hidden" id="hidden_input" onmouseover="check_input()">
+    <p id="finalhint">copyright CWC 2004</p>
+  </body>
+</html>
